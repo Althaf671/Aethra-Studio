@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 export default function Hero() {
   /* --- in‑view trigger untuk animasi “Why Choose Us?” --- */
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
