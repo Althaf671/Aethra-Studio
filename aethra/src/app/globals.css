@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Metrophobic&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Poppins:wght@400;600&display=swap');
+
 @import "tailwindcss";
 
 :root {
@@ -25,6 +28,74 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Font */
+h1, h2, h3, .poppins {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+
+
+/* Background */
+
+
+
+
+/* Border */
+.sidebar-li-border {
+  border: 1.4px solid white;
+  border-radius: 15px;
+  padding: 5.5px 5px;
+  letter-spacing: 1px;
+}
+
+
+
+/* Font Color */
+.price-color, .register-login-text {
+  color: #eeba2b;
+}
+
+.gradient-text {
+  font-size: 28px;
+  letter-spacing: 5px;
+  font-weight: bold;
+  background: linear-gradient(to left, rgb(199, 199, 199), rgb(110, 105, 105), rgb(168, 166, 166), rgb(55, 55, 55), #A76B09, #A76B09, #DDA74F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+
+
+/* Special Components */
+.catalog-card {
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.catalog-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  background-color: #FFFFFF;
+  color: black;
+}
+
+.catalog-card:active {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  background-color: #FFFFFF;
+}
+
+
+/* Buttons */
+.login-btn {
+  transition: all ease-in 0.15s;
+}
+
+.login-btn:active {
+    background: white;
+    color: black;
+}
 
 
