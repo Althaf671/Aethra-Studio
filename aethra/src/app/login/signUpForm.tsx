@@ -8,7 +8,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 const FormSchema = z
   .object({
-    username: z.string().min(1, 'Username is required').max(100),
     email: z.string().min(1, 'Email is required').email('Invalid email'),
     password: z
       .string()
@@ -33,7 +32,6 @@ export default function SignUpForm() {
   } = useForm<FormData>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      username: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -47,7 +45,6 @@ export default function SignUpForm() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        username: values.username,
         email: values.email,
         password: values.password,
       }),
@@ -67,13 +64,6 @@ export default function SignUpForm() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mt-3 p-4 pt-10 md:p-6 lg:p-10 z-50 relative">
           <h1 className="text-[20px] text-center mb-6">Register your Account</h1>
-
-          <input
-            {...register('username')}
-            placeholder="Username"
-            className="outline-none my-[8px] max-w-[300px] tracking-wider rounded-2xl bg-white/10 py-2 px-4 text-[15px]"
-          />
-          {errors.username && <p className="text-red-400 text-[10px] text-left ml-2 -my-1">{errors.username.message}</p>}
 
           <input
             {...register('email')}
