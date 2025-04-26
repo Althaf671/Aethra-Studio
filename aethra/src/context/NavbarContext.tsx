@@ -28,3 +28,4 @@ export function useNavbar() {
   if (!ctx) throw new Error('useNavbar must be used inside NavbarProvider');
   return ctx;
 }
+

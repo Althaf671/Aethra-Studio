@@ -4,13 +4,15 @@ import { useNavbar } from '@/context/NavbarContext';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSession } from 'next-auth/react';
 
 export default function NavbarLayout() {
   const { isVisible } = useNavbar();
   const [open, setOpen] = useState(false);
+  const { data: session } = useSession(); // Use session to know is user already log-in or no, if yes the button login from side bar will change into profile
   if (!isVisible) return null;
 
-  /* animasi sidebar */
+  /* sidebar smooth animation */
   const variants = {
     hidden: { x: '-100%', opacity: 0 },
     show: {
@@ -22,7 +24,9 @@ export default function NavbarLayout() {
   };
 
   const items = [
-    { label: 'Profile', href: '/login' },
+    session
+    ? { label: 'Profile', href: '/profile' }
+    : { label: 'Login', href: '/login' },
     { label: 'Saved', href: '/service' },
     { label: '🇬🇧 | 🇮🇩', href: '/' },
   ];
@@ -73,7 +77,10 @@ export default function NavbarLayout() {
               <motion.ul className="flex flex-col gap-3 text-[15px]">
                 {items.map((it) => (
                   <motion.li key={it.href} variants={variants}>
-                    <Link href={it.href} onClick={() => setOpen(false)} className='sidebar-li-border flex justify-center min-w-[90px] text-[11.5px] active:bg-gray-800'>
+                    <Link 
+                      href={it.href} 
+                      onClick={() => setOpen(false)} 
+                      className='sidebar-li-border flex justify-center min-w-[90px] text-[11.5px] active:bg-gray-800'>
                       {it.label}
                     </Link>
                   </motion.li>

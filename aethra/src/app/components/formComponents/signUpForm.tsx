@@ -109,10 +109,15 @@ export default function SignUpForm() {
           </button>
 
           {/* Already have an account? */}
-          <div className='flex  justify-center items-center text-[11px] mt-3'>
+          <div className='flex justify-between items-center px-3 mt-3.5 mb-1'>
+            <hr className='h-[0.5px] w-full bg-white'></hr>
+            <p className='px-2 text-[13px]'>or</p>
+            <hr className='h-[0.5px] w-full bg-white'></hr>
+          </div>
+          <div className='flex  justify-center items-center text-[11px]'>
             <p>Already have an account?</p>
             <span className='ml-1'>
-                <Link href='/service' className='register-login-text underline'>Sign In</Link>
+                <Link href='/login' className='register-login-text text-[13] underline'>Sign In</Link>
             </span>
           </div>
         </form>

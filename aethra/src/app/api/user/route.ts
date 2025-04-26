@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 import bcrypt from "bcryptjs";
 import * as z from 'zod';
 
@@ -29,13 +29,13 @@ export async function POST(req: Request) {
         }
 
         // check if email already exists
-        const existingUserByUsername = await db.user.findUnique({
+        const existingUserByName = await db.user.findUnique({
             where: { 
                 name: name 
             }
         });
-        if(existingUserByUsername) {
-            return NextResponse.json({ user: null, message: "User with this username already exist :(" }, { status: 409 })
+        if(existingUserByName) {
+            return NextResponse.json({ user: null, message: "User with this name already exist :(" }, { status: 409 })
         }
 
         // Encrypt password using bcryptjs

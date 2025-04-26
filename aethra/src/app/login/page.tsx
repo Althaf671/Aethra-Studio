@@ -1,8 +1,11 @@
-import SignUpForm from "./signUpForm";
+import SignInForm from "../components/formComponents/signInForm";
+
 
 
 export default function Login() {
     return (
-        <SignUpForm />
+        <div>
+            <SignInForm />
+        </div>
     )
 }
