@@ -1782,7 +1782,6 @@ export namespace Prisma {
     name: string | null
     password: string | null
     isGoogle: boolean | null
-    phone: string | null
     isEmailVerified: boolean | null
     resetToken: string | null
     resetTokenExpiry: Date | null
@@ -1801,7 +1800,6 @@ export namespace Prisma {
     name: string | null
     password: string | null
     isGoogle: boolean | null
-    phone: string | null
     isEmailVerified: boolean | null
     resetToken: string | null
     resetTokenExpiry: Date | null
@@ -1820,7 +1818,6 @@ export namespace Prisma {
     name: number
     password: number
     isGoogle: number
-    phone: number
     isEmailVerified: number
     resetToken: number
     resetTokenExpiry: number
@@ -1849,7 +1846,6 @@ export namespace Prisma {
     name?: true
     password?: true
     isGoogle?: true
-    phone?: true
     isEmailVerified?: true
     resetToken?: true
     resetTokenExpiry?: true
@@ -1868,7 +1864,6 @@ export namespace Prisma {
     name?: true
     password?: true
     isGoogle?: true
-    phone?: true
     isEmailVerified?: true
     resetToken?: true
     resetTokenExpiry?: true
@@ -1887,7 +1882,6 @@ export namespace Prisma {
     name?: true
     password?: true
     isGoogle?: true
-    phone?: true
     isEmailVerified?: true
     resetToken?: true
     resetTokenExpiry?: true
@@ -1993,7 +1987,6 @@ export namespace Prisma {
     name: string
     password: string
     isGoogle: boolean
-    phone: string | null
     isEmailVerified: boolean
     resetToken: string | null
     resetTokenExpiry: Date | null
@@ -2031,7 +2024,6 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     isGoogle?: boolean
-    phone?: boolean
     isEmailVerified?: boolean
     resetToken?: boolean
     resetTokenExpiry?: boolean
@@ -2054,7 +2046,6 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     isGoogle?: boolean
-    phone?: boolean
     isEmailVerified?: boolean
     resetToken?: boolean
     resetTokenExpiry?: boolean
@@ -2073,7 +2064,6 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     isGoogle?: boolean
-    phone?: boolean
     isEmailVerified?: boolean
     resetToken?: boolean
     resetTokenExpiry?: boolean
@@ -2092,7 +2082,6 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     isGoogle?: boolean
-    phone?: boolean
     isEmailVerified?: boolean
     resetToken?: boolean
     resetTokenExpiry?: boolean
@@ -2105,7 +2094,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "isGoogle" | "phone" | "isEmailVerified" | "resetToken" | "resetTokenExpiry" | "emailVerifyToken" | "emailVerifyExpiry" | "rememberToken" | "isAdmin" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "isGoogle" | "isEmailVerified" | "resetToken" | "resetTokenExpiry" | "emailVerifyToken" | "emailVerifyExpiry" | "rememberToken" | "isAdmin" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     orders?: boolean | User$ordersArgs<ExtArgs>
     cart?: boolean | User$cartArgs<ExtArgs>
@@ -2128,7 +2117,6 @@ export namespace Prisma {
       name: string
       password: string
       isGoogle: boolean
-      phone: string | null
       isEmailVerified: boolean
       resetToken: string | null
       resetTokenExpiry: Date | null
@@ -2570,7 +2558,6 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly isGoogle: FieldRef<"User", 'Boolean'>
-    readonly phone: FieldRef<"User", 'String'>
     readonly isEmailVerified: FieldRef<"User", 'Boolean'>
     readonly resetToken: FieldRef<"User", 'String'>
     readonly resetTokenExpiry: FieldRef<"User", 'DateTime'>
@@ -11999,7 +11986,6 @@ export namespace Prisma {
     name: 'name',
     password: 'password',
     isGoogle: 'isGoogle',
-    phone: 'phone',
     isEmailVerified: 'isEmailVerified',
     resetToken: 'resetToken',
     resetTokenExpiry: 'resetTokenExpiry',
@@ -12212,7 +12198,6 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     isGoogle?: BoolFilter<"User"> | boolean
-    phone?: StringNullableFilter<"User"> | string | null
     isEmailVerified?: BoolFilter<"User"> | boolean
     resetToken?: StringNullableFilter<"User"> | string | null
     resetTokenExpiry?: DateTimeNullableFilter<"User"> | Date | string | null
@@ -12234,7 +12219,6 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     isGoogle?: SortOrder
-    phone?: SortOrderInput | SortOrder
     isEmailVerified?: SortOrder
     resetToken?: SortOrderInput | SortOrder
     resetTokenExpiry?: SortOrderInput | SortOrder
@@ -12259,7 +12243,6 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     password?: StringFilter<"User"> | string
     isGoogle?: BoolFilter<"User"> | boolean
-    phone?: StringNullableFilter<"User"> | string | null
     isEmailVerified?: BoolFilter<"User"> | boolean
     resetToken?: StringNullableFilter<"User"> | string | null
     resetTokenExpiry?: DateTimeNullableFilter<"User"> | Date | string | null
@@ -12281,7 +12264,6 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     isGoogle?: SortOrder
-    phone?: SortOrderInput | SortOrder
     isEmailVerified?: SortOrder
     resetToken?: SortOrderInput | SortOrder
     resetTokenExpiry?: SortOrderInput | SortOrder
@@ -12308,7 +12290,6 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     isGoogle?: BoolWithAggregatesFilter<"User"> | boolean
-    phone?: StringNullableWithAggregatesFilter<"User"> | string | null
     isEmailVerified?: BoolWithAggregatesFilter<"User"> | boolean
     resetToken?: StringNullableWithAggregatesFilter<"User"> | string | null
     resetTokenExpiry?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
@@ -12822,7 +12803,6 @@ export namespace Prisma {
     name: string
     password: string
     isGoogle?: boolean
-    phone?: string | null
     isEmailVerified?: boolean
     resetToken?: string | null
     resetTokenExpiry?: Date | string | null
@@ -12844,7 +12824,6 @@ export namespace Prisma {
     name: string
     password: string
     isGoogle?: boolean
-    phone?: string | null
     isEmailVerified?: boolean
     resetToken?: string | null
     resetTokenExpiry?: Date | string | null
@@ -12865,7 +12844,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isGoogle?: BoolFieldUpdateOperationsInput | boolean
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12887,7 +12865,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isGoogle?: BoolFieldUpdateOperationsInput | boolean
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12909,7 +12886,6 @@ export namespace Prisma {
     name: string
     password: string
     isGoogle?: boolean
-    phone?: string | null
     isEmailVerified?: boolean
     resetToken?: string | null
     resetTokenExpiry?: Date | string | null
@@ -12927,7 +12903,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isGoogle?: BoolFieldUpdateOperationsInput | boolean
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12946,7 +12921,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isGoogle?: BoolFieldUpdateOperationsInput | boolean
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13539,7 +13513,6 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     isGoogle?: SortOrder
-    phone?: SortOrder
     isEmailVerified?: SortOrder
     resetToken?: SortOrder
     resetTokenExpiry?: SortOrder
@@ -13562,7 +13535,6 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     isGoogle?: SortOrder
-    phone?: SortOrder
     isEmailVerified?: SortOrder
     resetToken?: SortOrder
     resetTokenExpiry?: SortOrder
@@ -13581,7 +13553,6 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     isGoogle?: SortOrder
-    phone?: SortOrder
     isEmailVerified?: SortOrder
     resetToken?: SortOrder
     resetTokenExpiry?: SortOrder
@@ -15014,7 +14985,6 @@ export namespace Prisma {
     name: string
     password: string
     isGoogle?: boolean
-    phone?: string | null
     isEmailVerified?: boolean
     resetToken?: string | null
     resetTokenExpiry?: Date | string | null
@@ -15035,7 +15005,6 @@ export namespace Prisma {
     name: string
     password: string
     isGoogle?: boolean
-    phone?: string | null
     isEmailVerified?: boolean
     resetToken?: string | null
     resetTokenExpiry?: Date | string | null
@@ -15103,7 +15072,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isGoogle?: BoolFieldUpdateOperationsInput | boolean
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -15124,7 +15092,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isGoogle?: BoolFieldUpdateOperationsInput | boolean
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -15182,7 +15149,6 @@ export namespace Prisma {
     name: string
     password: string
     isGoogle?: boolean
-    phone?: string | null
     isEmailVerified?: boolean
     resetToken?: string | null
     resetTokenExpiry?: Date | string | null
@@ -15203,7 +15169,6 @@ export namespace Prisma {
     name: string
     password: string
     isGoogle?: boolean
-    phone?: string | null
     isEmailVerified?: boolean
     resetToken?: string | null
     resetTokenExpiry?: Date | string | null
@@ -15271,7 +15236,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isGoogle?: BoolFieldUpdateOperationsInput | boolean
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -15292,7 +15256,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isGoogle?: BoolFieldUpdateOperationsInput | boolean
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -15350,7 +15313,6 @@ export namespace Prisma {
     name: string
     password: string
     isGoogle?: boolean
-    phone?: string | null
     isEmailVerified?: boolean
     resetToken?: string | null
     resetTokenExpiry?: Date | string | null
@@ -15371,7 +15333,6 @@ export namespace Prisma {
     name: string
     password: string
     isGoogle?: boolean
-    phone?: string | null
     isEmailVerified?: boolean
     resetToken?: string | null
     resetTokenExpiry?: Date | string | null
@@ -15428,7 +15389,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isGoogle?: BoolFieldUpdateOperationsInput | boolean
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -15449,7 +15409,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isGoogle?: BoolFieldUpdateOperationsInput | boolean
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-hot-toast';
 
 const FormSchema = z
   .object({
@@ -54,8 +55,10 @@ export default function SignUpForm() {
     });
 
     if (response.ok) {
-      router.push('/');
+      toast.success('Account created')
+      router.push('/login');
     } else {
+      toast.error('Registration failed');
       console.error('Registration failed');
     }
   };

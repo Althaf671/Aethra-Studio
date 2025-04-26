@@ -5,11 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSession } from 'next-auth/react';
+import { toast } from 'react-hot-toast';
 
 export default function NavbarLayout() {
   const { isVisible } = useNavbar();
   const [open, setOpen] = useState(false);
-  const { data: session } = useSession(); // Use session to know is user already log-in or no, if yes the button login from side bar will change into profile
+  const { data: session, status } = useSession(); // Use session to know is user already log-in or no, if yes the button login from side bar will change into profile
+
   if (!isVisible) return null;
 
   /* sidebar smooth animation */
@@ -24,11 +26,11 @@ export default function NavbarLayout() {
   };
 
   const items = [
-    session
-    ? { label: 'Profile', href: '/profile' }
-    : { label: 'Login', href: '/login' },
+    session?.user
+      ? { label: 'Profile', href: '/profile' }
+      : { label: 'Login', href: '/login' },
     { label: 'Saved', href: '/service' },
-    { label: '🇬🇧 | 🇮🇩', href: '/' },
+    { label: '🇬🇧 | 🇮🇩', href: '/' },
   ];
 
   return (

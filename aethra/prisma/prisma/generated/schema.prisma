@@ -15,7 +15,6 @@ model User {
   name              String    @unique
   password          String
   isGoogle          Boolean   @default(false)
-  phone             String?
   isEmailVerified   Boolean   @default(false)
   resetToken        String?
   resetTokenExpiry  DateTime?

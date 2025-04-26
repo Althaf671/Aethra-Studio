@@ -14,7 +14,8 @@ export default function Hero() {
   return (
     <>
       {/* 3D model credit */}
-      <section className="h-[20rem] bg-blue-500 text-white p-4 pt-10 md:p-6 lg:p-10">
+      <section className="h-[20rem] text-white p-4 pt-10 md:p-6 lg:p-10">
+        <canvas></canvas>
         <p className="text-[7px] opacity-80">
           <a href="https://sketchfab.com/phil_xg">Model by Phil_XG</a>
         </p>

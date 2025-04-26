@@ -23,17 +23,17 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email", placeholder: "email@example.com" },
         password: { label: "Password", type: "password" },
       },
+
       async authorize(credentials) {
         // Validate inputs
         if (!credentials?.email || !credentials?.password) {
+            console.log("Email or password is wrong");
           return null;
         }
 
         // To find user already exist or not from db
         const existingUser = await db.user.findUnique({
-          where: { email: credentials.email },
-        });
-
+          where: { email: credentials.email }, });
         if (!existingUser) {
           return null;
         }
@@ -45,8 +45,9 @@ export const authOptions: NextAuthOptions = {
         }
 
         // Return user info 
+        console.log("User authentication seccesfull for:", existingUser);
         return {
-          id: `${existingUser.id}`,
+        id: `$(existingUser.id)`,
           name: existingUser.name, 
           email: existingUser.email,
         };
@@ -54,24 +55,14 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-    console.log(token, user);
-      if(user) {
-        return {
-            ...token,
-            name: user.name,
-        }
-      }
-      return token;
-    },
     async session({ session, token }) {
-      return {
-        ...session,
-        user: {
-            ...session.user,
-            name: token.name
-        }
+      // Periksa jika session.user ada
+      if (session.user) {
+        session.user.name = token.name || ""; 
+      } else {
+        session.user = { name: token.name || "", email: "", id: "" }; 
       }
+  
       return session;
     },
   }

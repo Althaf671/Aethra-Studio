@@ -15,6 +15,7 @@ const userSchema = z
             .min(8, 'password must have than 8 characters'),
     })
 
+
 export async function POST(req: Request) {
     try {
         const body = await req.json();
@@ -52,9 +53,10 @@ export async function POST(req: Request) {
         const { password: newUserPassword, ...rest } = newUser
 
         return NextResponse.json({ user: rest, message: "user created succesfully" }, { status: 201 })
-    } catch(error) {
+    } catch (error) {
+        console.error(error); 
         return NextResponse.json({ message: "ada yang salah njir" }, { status: 500 });
-    }
+      }
 }
 
 

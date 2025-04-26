@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-hot-toast';
 
 const FormSchema = z
   .object({
@@ -27,19 +28,20 @@ export default function SignInForm() {
         },
     });
 
-    const onSubmit = async (values: FormData) => {
+    const onSubmit = async (values: z.infer<typeof FormSchema>) => {
         const signInData = await signIn('credentials', {
             email: values.email,
             password: values.password,
-            redirect: false,
         });
         console.log(signInData);
         if (signInData?.error) {
+            toast.error('Login failed')
             console.log(signInData.error);
         } else {
+            toast.success('Login succesfully')
             router.push('/');
         }
-    };
+    }
 
     return (
         <div className="flex flex-col justify-center items-center mt-20 mb-18">

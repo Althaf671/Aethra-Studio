@@ -123,7 +123,6 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   password: 'password',
   isGoogle: 'isGoogle',
-  phone: 'phone',
   isEmailVerified: 'isEmailVerified',
   resetToken: 'resetToken',
   resetTokenExpiry: 'resetTokenExpiry',

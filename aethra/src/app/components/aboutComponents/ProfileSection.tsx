@@ -40,7 +40,7 @@ export default function ProfileSection() {
         </div>
 
          {/* Company Milestone */}
-         <div className=' flex items-center z-1000 text-white mt-8 mb-8'>
+         <div className='relative flex items-center z-40 text-white mt-8 mb-8'>
 
             {/* Tooltip while hovering */}
             <span className="relative group text-[11px] cursor-pointer select-none">
