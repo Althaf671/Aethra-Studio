@@ -20,7 +20,7 @@ export default function NavbarLayout() {
     show: {
       x: 0,
       opacity: 1,
-      transition: { when: 'beforeChildren', staggerChildren: 0.30 },
+      transition: { when: 'beforeChildren', staggerChildren: 0.05 },
     },
     exit: { x: '-100%', opacity: 0 },
   };
