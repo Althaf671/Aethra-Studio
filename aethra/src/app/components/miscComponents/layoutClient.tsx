@@ -5,9 +5,11 @@ import { NavbarProvider } from "@/context/NavbarContext";
 import NavbarLayout from "./NavbarLayout";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from 'react-hot-toast';
-import Loading from "./Loading";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const Loading = dynamic(() => import("../../components/miscComponents/Loading"), { ssr: false });
 
 export default function LayoutClient({ children }: { children: React.ReactNode }) {
   const router = useRouter();
