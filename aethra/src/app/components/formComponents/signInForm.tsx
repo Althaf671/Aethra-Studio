@@ -1,6 +1,5 @@
 'use client';
 import { useForm } from 'react-hook-form';
-import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import * as z from 'zod';
@@ -28,20 +27,39 @@ export default function SignInForm() {
         },
     });
 
-    const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-        const signInData = await signIn('credentials', {
-            email: values.email,
-            password: values.password,
+    const handleSignIn = async (formData: FormData) => {
+      try {
+        const response = await fetch("https://aethra-studio-kl9a.vercel.app/api/auth/signin?csrf=true", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),  // formData berisi data dari input user
         });
-        console.log(signInData);
-        if (signInData?.error) {
-            toast.error('Login failed')
-            console.log(signInData.error);
-        } else {
-            toast.success('Login succesfully')
-            router.push('/');
+
+        const data = await response.json();
+        console.log("API Response:", data);  // Memeriksa respons dari API
+
+        if (response.status !== 200) {
+          // Menampilkan pesan error jika status bukan 200
+          toast.error(data.message || 'Login failed. Please try again.');
+        } else if (data.token) {
+          // Jika ada token, login berhasil
+          toast.success('Login successful');
+          // Simpan token atau lakukan tindakan lain jika diperlukan
+          localStorage.setItem('authToken', data.token);
+          // Arahkan ke halaman berikutnya
+          router.push('/');
         }
-    }
+      } catch (error) {
+        console.error("Error during sign in:", error);
+        toast.error('An error occurred. Please try again later.');
+      }
+    };
+
+    const onSubmit = async (values: FormData) => {
+      handleSignIn(values); // Panggil handleSignIn saat form disubmit
+    };
 
     return (
         <div className="flex flex-col justify-center items-center mt-20 mb-18">
@@ -54,7 +72,6 @@ export default function SignInForm() {
 
                 <input
                     {...register('email')}
-                    name="email"
                     type="email"
                     placeholder="Email"
                     className="outline-none my-[8px] tracking-wider rounded-2xl bg-white/10 py-2 px-4 text-[15px]"
@@ -63,7 +80,6 @@ export default function SignInForm() {
 
                 <input
                     {...register('password')}
-                    name="password"
                     type="password"
                     placeholder="Password"
                     className="outline-none my-[8px] tracking-wider rounded-2xl bg-white/10 py-2 px-4 text-[15px]"
