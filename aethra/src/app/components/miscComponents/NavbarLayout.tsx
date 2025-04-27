@@ -5,12 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSession } from 'next-auth/react';
-import { toast } from 'react-hot-toast';
 
 export default function NavbarLayout() {
   const { isVisible } = useNavbar();
   const [open, setOpen] = useState(false);
-  const { data: session, status } = useSession(); // Use session to know is user already log-in or no, if yes the button login from side bar will change into profile
+  const { data: session, status } = useSession(); // Use session to know if the user is logged in or not
 
   if (!isVisible) return null;
 
@@ -25,8 +24,9 @@ export default function NavbarLayout() {
     exit: { x: '-100%', opacity: 0 },
   };
 
+  // Render items based on session status
   const items = [
-    session?.user
+    status === "authenticated"
       ? { label: 'Profile', href: '/profile' }
       : { label: 'Login', href: '/login' },
     { label: 'Saved', href: '/service' },

@@ -1,13 +1,14 @@
 'use client';
-import { useForm } from 'react-hook-form';
+import { Form, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-hot-toast';
+import { signIn } from 'next-auth/react';
+import { error } from 'console';
 
-const FormSchema = z
-  .object({
+const FormSchema = z.object({
     email: z.string().min(1, 'Email is required').email('Invalid email'),
     password: z
       .string()
@@ -15,11 +16,8 @@ const FormSchema = z
       .min(8, 'Password must have at least 8 characters'),
   });
 
-type FormData = z.infer<typeof FormSchema>;
-
-export default function SignInForm() {
-    const router = useRouter();
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+const signInForm = () => {
+    const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
             email: '',
@@ -27,39 +25,15 @@ export default function SignInForm() {
         },
     });
 
-    const handleSignIn = async (formData: FormData) => {
-      try {
-        const response = await fetch("https://aethra-studio-kl9a.vercel.app/api/auth/signin?csrf=true", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),  // formData berisi data dari input user
+    const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+        const signInData = await signIn('credentials', {
+            email: values.email,
+            password: values.password,
+            redirect: false,
         });
+        console.log(signInData);
+    }
 
-        const data = await response.json();
-        console.log("API Response:", data);  // Memeriksa respons dari API
-
-        if (response.status !== 200) {
-          // Menampilkan pesan error jika status bukan 200
-          toast.error(data.message || 'Login failed. Please try again.');
-        } else if (data.token) {
-          // Jika ada token, login berhasil
-          toast.success('Login successful');
-          // Simpan token atau lakukan tindakan lain jika diperlukan
-          localStorage.setItem('authToken', data.token);
-          // Arahkan ke halaman berikutnya
-          router.push('/');
-        }
-      } catch (error) {
-        console.error("Error during sign in:", error);
-        toast.error('An error occurred. Please try again later.');
-      }
-    };
-
-    const onSubmit = async (values: FormData) => {
-      handleSignIn(values); // Panggil handleSignIn saat form disubmit
-    };
 
     return (
         <div className="flex flex-col justify-center items-center mt-20 mb-18">
@@ -67,29 +41,26 @@ export default function SignInForm() {
             <div className="absolute inset-0 bg-black/30 blur-sm h-full w-full rounded-3xl"></div>
     
             {/* Form */}
-            <form className="flex flex-col mt-3 scale-z-100" onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col mt-3 scale-z-100">
               <h1 className="text-[18.5px] text-center mb-6">Login your account</h1>
 
                 <input
-                    {...register('email')}
+                    {...form.register('email')}
                     type="email"
                     placeholder="Email"
                     className="outline-none my-[8px] tracking-wider rounded-2xl bg-white/10 py-2 px-4 text-[15px]"
                 />
-                {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
 
                 <input
-                    {...register('password')}
+                    {...form.register('password')}
                     type="password"
                     placeholder="Password"
                     className="outline-none my-[8px] tracking-wider rounded-2xl bg-white/10 py-2 px-4 text-[15px]"
                 />
-                {errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
 
                 {/* remember & forgot */}
               <div className="flex w-full max-h-4 justify-between items-center mt-0.5 px-1">
-                <div className="flex justify-center items-center gap-[5px] scale-z-100">
-                <label>
+                <label className="flex justify-center items-center gap-[1px] scale-z-100">
                 <input
                     type="checkbox"
                     name="remember"
@@ -97,7 +68,6 @@ export default function SignInForm() {
                   />
                   <label className="text-[10.5px] opacity-80 ml-1">Remember me</label>
                 </label>
-                </div>
                 <div className="flex max-w-25 justify-center items-center gap-1 scale-z-100">
                   <label className="text-[8px] underline italic tracking-[0.5px] opacity-80 cursor-pointer hover:opacity-100">
                     Forgot password?
@@ -135,8 +105,10 @@ export default function SignInForm() {
                 </span>
             </div>
 
-            </form>      
+            </form>
           </div>
         </div>
       );
 }
+
+export default signInForm;
