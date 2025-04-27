@@ -98,4 +98,17 @@ h1, h2, h3, .poppins {
     color: black;
 }
 
+.btn-edit {
+  font-size: 12px;
+  color: #eeba2b;
+  font-weight: bold;
+  border: 1.5px solid white;
+  border-radius: 10px;
+  transition: all ease-in 0.15s;
+}
+
+.btn-edit:active, .btn-edit:hover {
+  background: #ffffff;
+}
+
 

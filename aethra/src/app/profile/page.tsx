@@ -1,14 +1,22 @@
 'use client';
-import { useSession } from "next-auth/react";
+import React, { useEffect } from 'react'
+import { useNavbar } from "@/context/NavbarContext";
+import TopSection from "../components/profileComponents/TopSection";
 
-const Profile = () => {
-  const { data: session } = useSession();
+export default function Profile() {
+    const { hide, show } = useNavbar();
+
+    useEffect(() => {
+        hide(); 
+        return () => {
+          show(); 
+        };
+      }, []);
 
   return (
-    <div className="text-center text-3xl mt-30 text-white">
-      Welcome to your Profile {session?.user.name}
+    <div className="text-center text-3xl container flex flex-col p-4 pb-10 pt-5 md:p-6 lg:p-10  text-white">
+      <TopSection />
     </div>
   );
 }
 
-export default Profile;

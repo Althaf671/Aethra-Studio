@@ -26,6 +26,7 @@
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.56.1",
     "react-hot-toast": "^2.5.2",
+    "react-phone-number-input": "^3.4.12",
     "styled-jsx": "^5.1.6",
     "swiper": "^11.2.6",
     "three": "^0.176.0",
