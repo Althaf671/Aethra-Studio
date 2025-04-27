@@ -1,3 +1,5 @@
+'usse client';
+
 import ProfileSection from "../components/aboutComponents/ProfileSection";
 
 export default function AboutPage() {
