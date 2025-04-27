@@ -10,3 +10,5 @@ console.log(session)
         <div className="text-center text-3xl mt-30 text-white">Welcome to your Profile{session?.user.name}</div>
     )
 }
+
+export default Profile;
