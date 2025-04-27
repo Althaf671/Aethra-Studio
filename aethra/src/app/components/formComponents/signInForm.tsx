@@ -33,10 +33,10 @@ const signInForm = () => {
             redirect: false,
         });
         if (signInData?.ok) {
-            toast.success("Login sukses!");
+            toast.success("Login succesfuly!");
             router.push('/')
           } else {
-            toast.error("Login gagal. Periksa email atau password.");
+            toast.error("Login failed. Check your email or password.");
           }
         
           console.log(signInData);
