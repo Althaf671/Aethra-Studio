@@ -17,6 +17,7 @@ const FormSchema = z.object({
   });
 
 const signInForm = () => {
+    const router = useRouter();
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -26,7 +27,6 @@ const signInForm = () => {
     });
 
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-        const router = useRouter();
         const signInData = await signIn('credentials', {
             email: values.email,
             password: values.password,
