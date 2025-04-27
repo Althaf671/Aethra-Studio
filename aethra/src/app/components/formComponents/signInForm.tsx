@@ -26,12 +26,20 @@ const signInForm = () => {
     });
 
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+        const router = useRouter();
         const signInData = await signIn('credentials', {
             email: values.email,
             password: values.password,
             redirect: false,
         });
-        console.log(signInData);
+        if (signInData?.ok) {
+            toast.success("Login sukses!");
+            router.push('/')
+          } else {
+            toast.error("Login gagal. Periksa email atau password.");
+          }
+        
+          console.log(signInData);
     }
 
 
