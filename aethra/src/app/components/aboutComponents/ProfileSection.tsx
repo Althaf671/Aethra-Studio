@@ -11,7 +11,7 @@ export default function ProfileSection() {
     const isInView = useInView(ref, { once: true });
 
   return (
-    <div className='container flex flex-col p-4 pb-28 pt-25 md:p-6 lg:p-10 select-none'>
+    <div className='container flex flex-col p-4 pb-28 pt-20 md:p-6 lg:p-10 select-none'>
 
         <motion.div 
             className='flex flex-col w-full justify-center items-center mb-7 '

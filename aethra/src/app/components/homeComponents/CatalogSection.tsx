@@ -35,7 +35,7 @@ export default function CatalogSection() {
     };
 
     return (
-        <div className='container p-4 pt-20 md:p-6 lg:p-10'>
+        <div className='container p-4 pt-10 md:p-6 lg:p-10'>
             {/* Section title */}
             <motion.div
                 className='flex justify-baseline items-center mb-7'

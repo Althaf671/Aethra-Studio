@@ -34,26 +34,37 @@ export default function NavbarLayout() {
   ];
 
   return (
-    <nav className="fixed top-0 z-[500] w-full select-none">
+    <nav className="fixed justify-center items-center w-full top-2 z-[500] select-none">
       {/* blur background */}
-      <div className="absolute h-11 w-full backdrop-blur-md bg-black/60" />
+      <div className="container absolute h-11 w-full rounded-[3rem] backdrop-blur-md bg-black/60" />
 
-      <div className="relative flex h-11 w-full items-center justify-between px-3">
+      <div className="relative flex h-11 w-full items-center justify-between px-5">
         {/* menu icon */}
         <Image
           src="/images/misc/whiteMenu.png"
           alt="menu"
-          width={24}
-          height={24}
-          className="cursor-pointer"
+          width={28}
+          height={28}
+          className="cursor-pointer flex"
           onClick={() => setOpen(!open)}
         />
 
         {/* links */}
-        <ul className="poppins flex gap-5 text-[15px]">
-          <Link href="/">HOME</Link>
-          <Link href="/service">SERVICE</Link>
-          <Link href="/about">ABOUT</Link>
+        <ul className="poppins flex gap-1 text-[15px]">
+          <Link className="flex flex-col items-center rounded-2xl py-0.5 px-2 active:bg-white/20 " href="/">
+            <p>HOME</p>
+            <hr className="hr-bg w-6 border-none h-[2px] z-49 bg-white hidden"></hr>
+          </Link>
+
+          <Link href="/service" className="flex flex-col items-center rounded-2xl py-0.5 px-2 active:bg-white/20 ">
+            <p>PRICING</p>
+            <hr className="hr-bg w-6 border-none h-[2px] bg-white hidden"></hr>
+          </Link>
+
+          <Link href="/about" className="flex flex-col items-center rounded-2xl py-0.5 px-2 active:bg-white/20 ">
+            <p>ABOUT</p>
+            <hr className="hr-bg w-6 border-none h-[2px] bg-white hidden"></hr>
+          </Link>
         </ul>
 
         {/* cart */}
@@ -61,8 +72,9 @@ export default function NavbarLayout() {
           <Image
             src="/images/misc/whiteCart.png"
             alt="cart"
-            width={24}
-            height={24}
+            width={28}
+            height={28}
+             className="cursor-pointer flex"
           />
         </Link>
 
@@ -70,7 +82,7 @@ export default function NavbarLayout() {
         <AnimatePresence>
           {open && (
             <motion.aside
-              className="fixed left-2 top-0 mt-12 min-w-[100px] text-center rounded-2xl bg-white/5 backdrop-blur-md p-4 z-[1000]"
+              className="fixed left-2 top-0 mt-14 min-w-[100px] text-center rounded-2xl bg-black/60 backdrop-blur-md p-4 z-[1000]"
               variants={variants}
               initial="hidden"
               animate="show"

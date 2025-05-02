@@ -51,7 +51,20 @@ export default function Testimonial() {
   
 
   return (
-    <div className='container p-8 pt-40 md:p-6 lg:p-10'>
+    <div className='container p-8 pt-25 md:p-6 lg:p-10'>
+
+    {/* Title */}
+    <motion.div
+      ref={ref}
+      className="mb-7 flex justify-center items-center"
+      initial={{ x: 120, opacity: 0 }}
+      animate={isInView ? { x: 0, opacity: 1 } : {}}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
+    >
+      <h1 className="rounded-2xl bg-white/5 px-5 py-1.5 text-[18px] tracking-wide text-white">
+          Our Client Are <span className="special-text italic rounded-xl">Satisfied!</span>
+      </h1>
+    </motion.div>
 
     <Swiper className=''
                 effect="fade"
@@ -67,24 +80,23 @@ export default function Testimonial() {
                   {/* Testimonial Card */}
                   {testimonials.map((testimonials, index) => (
                     <SwiperSlide key={index}>
-                    <div className=' relative flex flex-col card-shadow p-5 bg-white min-h-60 gap-2 border-3 border-gray-950 rounded-3xl'>
+                    <div className='relative flex flex-col flex-wrap justify-between card-shadow p-5 bg-white min-h-60 gap-2 border-3 border-gray-950 rounded-3xl'>
                         {/* Upper card */}
-                        <div className='flex justify-between items-center text-left mb-2'>
-                        
-                        <p className='text-12px text-black'>Reviewed on {testimonials.date}</p>
-                        
-                        <div className='flex'>
-                          {[...Array(5)].map((_, i) => (
-                             <Image key={i} src="/images/misc/starBlack.png"  width={1024} height={1024} className='w-6' alt='rate-star' />
-                          ))}
-                        </div>
+                        <div className='flex flex-wrap justify-between items-center text-left mb-2'>
+                          <p className='text-12px text-black'>Reviewed on {testimonials.date}</p>
+                          
+                          <div className='flex flex-wrap'>
+                            {[...Array(5)].map((_, i) => (
+                              <Image key={i} src="/images/misc/starBlack.png"  width={24} height={24} className='relative min-w-6' alt='rate-star' />
+                            ))}
+                          </div>
                       </div>
       
                       {/* Middle card */}
                       <p className='text-[15px] text-black italic'>"{testimonials.review}"</p>
                       
                       {/* Bottom card */}
-                      <div className='absolute bottom-5 left-7 flex justify-baseline items-center gap-3'>
+                      <div className='flex justify-baseline items-center gap-3'>
                         <Image src={testimonials.avatar}  width={1024} height={1024} className=' w-12 h-12 rounded-full border-1 p-1' alt='customer-avatar' />
                         <div className='flex flex-col text-black'>
                           <p className='text-[16px]'>{testimonials.name}</p>

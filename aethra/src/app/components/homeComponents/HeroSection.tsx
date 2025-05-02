@@ -12,17 +12,20 @@ export default function Hero() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <>
+    <div className='flex flex-col gap-5'>
       {/* 3D model credit */}
-      <section className="h-[20rem] text-white p-4 pt-10 md:p-6 lg:p-10">
-        <canvas></canvas>
-        <p className="text-[7px] opacity-80">
-          <a href="https://sketchfab.com/phil_xg">Model by Phil_XG</a>
-        </p>
+      <section className="w-screen h-[23rem]">
+        <Image
+            src="/images/homeAssets/hero-2.webp"
+            width={1000}
+            height={300}
+            alt="hero icon"
+            className='w-screen min-h-auto max-h-[25rem] cursor-pointer object-cover'
+        />
       </section>
 
       {/* ――― Short description ――― */}
-      <section className="flex flex-col p-4 pt-10 md:p-6 lg:p-10">
+      <section className="flex flex-col flex-wrap px-4 ">
         <div className="flex justify-between mt-10 mb-3 items-center">
           <h1 className="text-[25px] font-semibold">Aethra Studio</h1>
           <SocialMediaLogo />
@@ -42,9 +45,9 @@ export default function Hero() {
         </p>
 
         {/* ――― Milestones ――― */}
-        <div className="mt-5 flex justify-between gap-4">
+        <div className="container mt-4 flex justify-between gap-4">
           {/* Years */}
-          <div className="flex flex-col border-2 w-[11.5rem] px-3 py-3 gap-1 border-white text-xs rounded-2xl">
+          <div className="flex flex-col border-2 min-w-[11.5rem] min-h-auto max-w-[20rem] max-h-[20rem] px-3 py-3 gap-1 border-white text-xs rounded-2xl">
             <h2 className="text-[10px] opacity-70">Years of Experience</h2>
             <div className="flex items-center gap-1 text-[14px]">
               <Image
@@ -58,7 +61,7 @@ export default function Hero() {
           </div>
 
           {/* Projects */}
-          <div className="flex flex-col border-2 w-[9rem] px-3 py-3 gap-1 border-white text-xs rounded-2xl">
+          <div className="flex flex-col border-2 min-w-[9rem] px-3 py-3 gap-1 border-white text-xs rounded-2xl">
             <h2 className="text-[10px] opacity-70">Project Handled</h2>
             <div className="flex items-center gap-1 text-[14px]">
               <Image
@@ -77,7 +80,7 @@ export default function Hero() {
       <div className="relative">
         <motion.div
           ref={ref}
-          className="flex flex-col items-center w-full mt-[120px] text-white z-50 p-4 pt-10 md:p-6 lg:p-10"
+          className="flex flex-col items-center w-full mt-[80px] text-white z-50 p-4 pt-10 md:p-6 lg:p-10"
           initial={{ y: 30, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.8, ease: easeOut }}
@@ -96,6 +99,6 @@ export default function Hero() {
 
         
       </div>
-    </>
+    </div>
   );
 }

@@ -23,7 +23,7 @@ datasource db {
     emailVerifyToken  String?
     emailVerifyExpiry DateTime?
     rememberToken     String?
-    isAdmin           Boolean       @default(false) // Buat admin dashboard
+    isAdmin           Boolean       @default(false) 
     deletedAt         DateTime?
     createdAt         DateTime      @default(now())
     updatedAt         DateTime      @updatedAt

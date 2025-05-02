@@ -6,6 +6,7 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 import { error } from 'console';
 
 const FormSchema = z.object({
@@ -16,7 +17,7 @@ const FormSchema = z.object({
       .min(8, 'Password must have at least 8 characters'),
   });
 
-const signInForm = () => {
+const SignInForm = () => {
     const router = useRouter();
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -32,16 +33,23 @@ const signInForm = () => {
             password: values.password,
             redirect: false,
         });
+
         if (signInData?.ok) {
             toast.success("Login succesfuly!");
-            router.push('/')
+
+            const session = await getSession();
+
+            if (session?.user?.isAdmin) {
+              router.push('/admin'); 
+            } else {
+              router.push('/');
+            }
           } else {
             toast.error("Login failed. Check your email or password.");
           }
         
           console.log(signInData);
     }
-
 
     return (
         <div className="flex flex-col justify-center items-center mt-20 mb-18">
@@ -119,4 +127,4 @@ const signInForm = () => {
       );
 }
 
-export default signInForm;
+export default SignInForm;

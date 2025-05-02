@@ -57,7 +57,7 @@ export default function IntroSection() {
   const [currentVideo, setCurrentVideo] = useState<string>('');
 
   return (
-    <div className="container p-4 pt-20 md:p-6 lg:p-10">
+    <div className="container p-4 pt-10 md:p-6 lg:p-10">
       {/* Title */}
       <motion.div
         ref={ref}

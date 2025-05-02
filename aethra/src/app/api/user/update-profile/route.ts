@@ -1,8 +1,6 @@
-// Import tipe dari Next.js
 import { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '@/lib/db';
 
-// Handler dengan tipe eksplisit
 export default async function handler(
   req: NextApiRequest, 
   res: NextApiResponse

@@ -53,6 +53,7 @@ export const authOptions: NextAuthOptions = {
           id: existingUser.id.toString(),
           name: existingUser.name,
           email: existingUser.email,
+          isAdmin: existingUser.isAdmin,
         };
       },
     }),
@@ -63,6 +64,7 @@ export const authOptions: NextAuthOptions = {
         session.user.name = token.name as string;
         session.user.email = token.email as string;
         session.user.id = token.id as string;
+        session.user.isAdmin = token.isAdmin as boolean
       }
       return session;
     },
@@ -71,6 +73,7 @@ export const authOptions: NextAuthOptions = {
         token.name = user.name;
         token.email = user.email;
         token.id = user.id;
+        token.isAdmin = user.isAdmin
       }
       return token;
     },

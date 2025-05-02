@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function ServicesPage() {
   return (
-    <div className="services-page">
+    <div className="services-page mt-10">
       <h1 className="text-2xl font-bold text-center my-8">Our Services</h1>
       <p className="text-center text-lg mb-8">
         We offer a variety of services to help you achieve your goals.
