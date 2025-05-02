@@ -18,10 +18,10 @@ export async function POST(req: Request) {
     try {
         const body = await req.json();
         
-        // Validasi input menggunakan Zod
+        // Validate user with Zod
         const { email, name, password } = userSchema.parse(body);
 
-        // Cek apakah email atau nama sudah ada di database
+        // Check if them emaol exist at db
         const existingUser = await db.user.findFirst({
             where: {
                 OR: [
@@ -52,7 +52,6 @@ export async function POST(req: Request) {
             },
         });
 
-        // Hapus field password sebelum mengembalikan data user
         const { password: newUserPassword, ...rest } = newUser;
 
         return NextResponse.json({ user: rest, message: "User created successfully." }, { status: 201 });

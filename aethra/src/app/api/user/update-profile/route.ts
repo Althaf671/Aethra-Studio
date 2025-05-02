@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '@/lib/db';
 
-export default async function handler(
+export default async function Handler(
   req: NextApiRequest, 
   res: NextApiResponse
 ) {

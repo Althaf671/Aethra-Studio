@@ -13,7 +13,6 @@ const TopSection = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [phone, setPhone] = useState<string | undefined>(undefined);
 
-  // Load phone dari localStorage saat pertama render
   useEffect(() => {
     const storedPhone = localStorage.getItem('phone');
     if (storedPhone) {
@@ -56,7 +55,6 @@ const TopSection = () => {
 
   const handleCancel = () => {
     setIsEditing(false);
-    // Mengembalikan phone ke nilai semula jika batal
     const storedPhone = localStorage.getItem('phone');
     if (storedPhone) {
       setPhone(storedPhone);
