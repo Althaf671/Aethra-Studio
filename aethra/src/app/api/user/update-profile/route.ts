@@ -1,27 +1,19 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+// app/api/user/update-profile/route.ts
+import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 
-export default async function Handler(
-  req: NextApiRequest, 
-  res: NextApiResponse
-) {
-  if (req.method === 'POST') {
-    const { id, name, phone } = req.body;
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+  const { id, name, phone } = body;
 
-    try {
-      const updatedUser = await db.user.update({
-        where: { id: id },  
-        data: {
-          name,
-          phone,
-        },
-      });
+  try {
+    const updatedUser = await db.user.update({
+      where: { id },
+      data: { name, phone },
+    });
 
-      return res.status(200).json(updatedUser);
-    } catch (error) {
-      return res.status(500).json({ error: 'Failed to update profile' });
-    }
+    return NextResponse.json(updatedUser, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to update profile' }, { status: 500 });
   }
-
-  return res.status(405).json({ error: 'Method not allowed' });
 }
