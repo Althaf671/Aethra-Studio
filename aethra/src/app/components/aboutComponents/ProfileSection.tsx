@@ -6,7 +6,7 @@ import SocialMediaLogo from '../miscComponents/SocialMedia';
 
 export default function ProfileSection() {
 
-    // Parallax Title
+    // Parallax animated title
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
