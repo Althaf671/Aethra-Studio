@@ -5,11 +5,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSession } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 
 export default function NavbarLayout() {
   const { isVisible } = useNavbar();
   const [open, setOpen] = useState(false);
   const { data: session, status } = useSession(); // Use session to know if the user is logged in or not
+  const pathname = usePathname(); // To hide navbar from specific pages
+
+  const hideNavbarOn = ['/admin']; 
+  const shouldHideNavbar = hideNavbarOn.some((path) => pathname.startsWith(path));
+
+  if (!isVisible || shouldHideNavbar) return null;
 
   if (!isVisible) return null;
 
@@ -34,9 +41,9 @@ export default function NavbarLayout() {
   ];
 
   return (
-    <nav className="fixed justify-center items-center w-full top-2 z-[500] select-none">
+    <nav className="fixed justify-center items-center min-w-screen top-2 z-[500] select-none">
       {/* blur background */}
-      <div className="container absolute h-11 w-full rounded-[3rem] backdrop-blur-md bg-black/60" />
+      <div className="absolute h-11 w-screen rounded-[3rem] backdrop-blur-md bg-black/60" />
 
       <div className="relative flex h-11 w-full items-center justify-between px-5">
         {/* menu icon */}

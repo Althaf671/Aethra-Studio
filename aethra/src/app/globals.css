@@ -74,6 +74,7 @@ h1, h2, h3, .poppins {
 .catalog-card {
   cursor: pointer;
   transition: transform 0.5s ease;
+  border: 1px solid white;
 }
 
 .catalog-card:hover {

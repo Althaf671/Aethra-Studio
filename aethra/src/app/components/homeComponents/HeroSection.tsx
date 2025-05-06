@@ -7,32 +7,33 @@ import Link from 'next/link';
 import SocialMediaLogo from '../miscComponents/SocialMedia';
 
 export default function Hero() {
-  // Parallax Why us
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <div className='flex flex-col gap-5'>
-      {/* 3D model credit */}
-      <section className="w-screen h-[23rem]">
+    <div className="overflow-hidden w-full">
+      {/* Hero Section */}
+      <section className="w-full h-[23rem] overflow-hidden">
         <Image
-            src="/images/homeAssets/hero-2.webp"
-            width={1000}
-            height={300}
-            alt="hero icon"
-            className='w-screen min-h-auto max-h-[25rem] cursor-pointer object-cover'
+          src="/images/homeAssets/hero-2.webp"
+          width={1920}
+          height={1080}
+          alt="hero icon"
+          className="w-full h-full object-cover"
         />
       </section>
 
-      {/* ――― Short description ――― */}
-      <section className="flex flex-col flex-wrap px-4 ">
-        <div className="flex justify-between mt-10 mb-3 items-center">
-          <h1 className="text-[25px] font-semibold">Aethra Studio</h1>
-          <SocialMediaLogo />
+      {/* Description */}
+      <section className="flex flex-col w-full h-fit px-4 max-w-screen-xl mx-auto">
+        <div className="flex justify-between w-full mt-10 mb-3 items-center">
+          <h1 className="text-[25px] font-semibold sm:text-xl md:text-2xl lg:text-3xl">Aethra Studio</h1>
+          <div className="shrink-0">
+            <SocialMediaLogo />
+          </div>
         </div>
 
-        <p className="text-justify">
-          Aethra Studio is a small but passionate creative‑service agency that
+        <p className="text-justify sm:text-sm md:text-base lg:text-lg">
+          Aethra Studio is a small but passionate creative‑service agency that
           offers promotional content, website development, graphic design, and
           photography. We help bring your ideas to life with a personal touch
           and professional quality on a friendly budget.&nbsp;
@@ -44,61 +45,67 @@ export default function Hero() {
           </Link>
         </p>
 
-        {/* ――― Milestones ――― */}
-        <div className="container mt-4 flex justify-between gap-4">
-          {/* Years */}
-          <div className="flex flex-col border-2 min-w-[11.5rem] min-h-auto max-w-[20rem] max-h-[20rem] px-3 py-3 gap-1 border-white text-xs rounded-2xl">
-            <h2 className="text-[10px] opacity-70">Years of Experience</h2>
-            <div className="flex items-center gap-1 text-[14px]">
-              <Image
-                src="/images/misc/timeWhite.svg"
-                width={24}
-                height={24}
-                alt="time icon"
-              />
-              <p>0 year</p>
+        {/* Milestones */}
+        <div className="mt-4 flex flex-wrap justify-between gap-4">
+            {/* Years */}
+            <div className="flex-[2] flex flex-col border-2 px-3 py-3 gap-1 border-white text-xs rounded-2xl min-w-[10rem]">
+              <h2 className="text-[10px] opacity-70 sm:text-xs">Years of Experience</h2>
+              <div className="flex items-center gap-1 text-[14px] sm:text-sm md:text-base lg:text-lg">
+                <Image
+                  src="/images/misc/timeWhite.svg"
+                  width={24}
+                  height={24}
+                  alt="time icon"
+                />
+                <p>0 year</p>
+              </div>
             </div>
-          </div>
 
-          {/* Projects */}
-          <div className="flex flex-col border-2 min-w-[9rem] px-3 py-3 gap-1 border-white text-xs rounded-2xl">
-            <h2 className="text-[10px] opacity-70">Project Handled</h2>
-            <div className="flex items-center gap-1 text-[14px]">
-              <Image
-                src="/images/misc/chart.svg"
-                width={24}
-                height={24}
-                alt="chart icon"
-              />
-              <p>0 project</p>
+            {/* Projects */}
+            <div className="flex-[1] flex flex-col border-2 px-3 py-3 gap-1 border-white text-xs rounded-2xl min-w-[10rem]">
+              <h2 className="text-[10px] opacity-70 sm:text-xs">Projects Handled</h2>
+              <div className="flex items-center gap-1 text-[14px] sm:text-sm md:text-base lg:text-lg">
+                <Image
+                  src="/images/misc/chart.svg"
+                  width={24}
+                  height={24}
+                  alt="chart icon"
+                />
+                <p>0 project</p>
+              </div>
             </div>
           </div>
-        </div>
       </section>
 
-      {/* ――― Why Us section ――― */}
-      <div className="relative">
+      {/* Why Us Section */}
+      <section className="relative flex mt-[80px] w-full min-h-[300px] items-center overflow-hidden bg-black text-white">
         <motion.div
           ref={ref}
-          className="flex flex-col items-center w-full mt-[80px] text-white z-50 p-4 pt-10 md:p-6 lg:p-10"
+          className="relative z-50 flex flex-col items-center w-full px-4 py-16 max-w-screen-xl mx-auto"
           initial={{ y: 30, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.8, ease: easeOut }}
         >
-          <h1 className="text-3xl font-semibold mb-2">Why Choose Us?</h1>
-          <p className="text-center text-[14px]">
-            Our field are promotional content, web development, graphic design,
+          <h1 className="text-3xl font-semibold mb-2 sm:text-2xl md:text-3xl lg:text-4xl">
+            Why Choose Us?
+          </h1>
+          <p className="text-center text-[14px] sm:text-sm md:text-base lg:text-lg">
+            Our fields are promotional content, web development, graphic design,
             and photography. We deliver quality and passion in every project.
           </p>
         </motion.div>
-        <div className='relative'>
-            <Image src={'/images/homeAssets/topBg.webp'}  width={1024}
-            height={1024} className='absolute w-full h-[280px] object-cover -bottom-20 -z-10 p-0 opacity-70' alt='why-us-image' />
-            <div className='absolute -bottom-25 w-full bg-black/60 h-5'></div>
-        </div>
 
-        
-      </div>
+        {/* Background Image */}
+        <div className="absolute inset-0 h-[500px] z-10">
+            <Image
+              src="/images/homeAssets/topBg.webp"
+              width={1920}
+              height={500}
+              alt="why-us background"
+              className="w-full h-full object-cover opacity-60"
+            />
+          </div>
+        </section>
     </div>
   );
 }

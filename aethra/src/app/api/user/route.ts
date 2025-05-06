@@ -59,11 +59,10 @@ export async function POST(req: Request) {
         if (error instanceof z.ZodError) {
             return NextResponse.json({
                 message: 'Invalid input data',
-                details: error.errors, // Mengirimkan error spesifik dari Zod
+                details: error.errors,
             }, { status: 400 });
         }
         
-        // Tangani error lainnya
         console.error(error);
         return NextResponse.json({ message: "An unexpected error occurred." }, { status: 500 });
     }

@@ -6,7 +6,7 @@ export default function FooterLayout() {
   return (
     <>
       {/* media partners and logo */}
-      <div className="relative mt-20 bg-white/5 px-5 py-4 text-white">
+      <div className="relative mt-20 bg-white/5 p-4 text-white">
         <div className="flex w-full items-center justify-between">
           <div className="flex flex-col">
             <h1 className="mb-1 text-xl tracking-widest">Media Partner</h1>

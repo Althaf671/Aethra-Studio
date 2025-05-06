@@ -1,32 +1,54 @@
-// src/app/services/page.tsx
-
+// pages/services.tsx
+'use client';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-export default function ServicesPage() {
+export default function Services() {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    async function fetchServices() {
+      const response = await fetch('/api/services');
+      const data = await response.json();
+      setServices(data);
+    }
+
+    fetchServices();
+  }, []);
+
+  const handleAddToCart = async (serviceId: number) => {
+    const response = await fetch('/api/cart/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ serviceId, quantity: 1 }),
+    });
+
+    if (response.ok) {
+      alert('Service added to cart!');
+    }
+  };
+
   return (
-    <div className="services-page mt-10">
-      <h1 className="text-2xl font-bold text-center my-8">Our Services</h1>
-      <p className="text-center text-lg mb-8">
-        We offer a variety of services to help you achieve your goals.
-      </p>
-      <div className="services-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        <div className="service-item bg-gray-100 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-semibold">Web Development</h2>
-          <p>We build high-quality, responsive websites tailored to your needs.</p>
-        </div>
-        <div className="service-item bg-gray-100 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-semibold">Mobile App Development</h2>
-          <p>We create smooth, intuitive mobile applications for Android and iOS.</p>
-        </div>
-        <div className="service-item bg-gray-100 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-semibold">Digital Marketing</h2>
-          <p>Our digital marketing services help you reach your audience effectively.</p>
-        </div>
-      </div>
-      <div className="text-center mt-8">
-        <Link href="/" className="text-blue-500 hover:underline">
-          Back to Home
-        </Link>
+    <div className='mt-20'>
+      <h1>All Services</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {services.map((service: any) => (
+          <div key={service.id} className="bg-white p-4 rounded shadow">
+            <img src={service.image} alt={service.title} className="w-full h-48 object-cover rounded" />
+            <h3 className="mt-2 font-bold">{service.title}</h3>
+            <p>{service.description}</p>
+            <p className="text-xl font-semibold">${service.price}</p>
+            <button
+              onClick={() => handleAddToCart(service.id)}
+              className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
+            >
+              Add to Cart
+            </button>
+            <Link href={`/service/${service.id}`}>
+              <a className="block mt-2 text-blue-500">View Details</a>
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );

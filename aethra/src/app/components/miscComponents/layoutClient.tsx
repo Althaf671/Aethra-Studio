@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
+
 const Loading = dynamic(() => import("../../components/miscComponents/Loading"), { ssr: false });
 
 export default function LayoutClient({ children }: { children: React.ReactNode }) {
@@ -23,7 +24,6 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
   );
 }
 
-// Ini component baru, sudah di dalam NavbarProvider
 function LayoutInner({ children }: { children: React.ReactNode }) {
   const { isVisible } = useNavbar();
   const pathname = usePathname();

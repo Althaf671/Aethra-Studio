@@ -35,7 +35,7 @@ export default function CatalogSection() {
     };
 
     return (
-        <div className='container p-4 pt-10 md:p-6 lg:p-10'>
+        <div className='container p-4 pt-10 px-5'>
             {/* Section title */}
             <motion.div
                 className='flex justify-baseline items-center mb-7'
@@ -48,13 +48,13 @@ export default function CatalogSection() {
                 </h1>
             </motion.div>
 
-            <div className='grid grid-cols-2 gap-6 text-white'>
+            <div className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-6 text-white'>
                 {/* Catalog Item Content Creator */}
                 <div
                     onClick={handleTap}
                     className={`catalog-card relative flex flex-col border-2 px-4 py-1 border-white rounded-2xl ${isTapped ? 'active' : ''}`}>
-                    <Image src='/images/homeAssets/contentCreatorCatalog.png' width={1024}
-                    height={1024} alt='content-creator' />
+                    <Image src='/images/homeAssets/contentCreatorCatalog.png' width={400}
+                    height={400} className='min-w-[5rem] p-1 sm:p-2 md:p-3 lg:p-4 xl:p-5 ' alt='content-creator' />
                     <div className='flex justify-between -mt-0.5'>
                         <div className='flex flex-col'>
                             <h1 className='text-[13.7px]'>Content Creation</h1>
@@ -70,8 +70,8 @@ export default function CatalogSection() {
                 <div
                     onClick={handleTap}
                     className={`catalog-card relative flex flex-col border-2 px-4 py-1 border-white rounded-2xl ${isTapped ? 'active' : ''}`}>
-                    <Image src='/images/homeAssets/webDevCatalog.png' width={1024}
-                    height={1024} className='w-full' alt='web-developer' />
+                    <Image src='/images/homeAssets/webDevCatalog.png' width={400}
+                    height={400} className='min-w-[5rem] p-1 sm:p-2 md:p-3 lg:p-4 xl:p-5 ' alt='web-developer' />
                     <div className='flex justify-between -mt-0.5'>
                         <div className='flex flex-col'>
                             <h1 className='text-[13.7px]'>Web Fullstack</h1>
@@ -89,8 +89,8 @@ export default function CatalogSection() {
                 <div
                     onClick={handleTap}
                     className={`catalog-card relative flex flex-col border-2 px-4 py-1 border-white rounded-2xl ${isTapped ? 'active' : ''}`}>
-                    <Image src='/images/homeAssets/graphicDesignCatalog.png' width={1024}
-                    height={1024} alt='graphic-designer' />
+                    <Image src='/images/homeAssets/graphicDesignCatalog.png' width={400}
+                    height={400} className='min-w-[5rem] p-1 sm:p-2 md:p-3 lg:p-4 xl:p-5 ' alt='graphic-designer' />
                     <div className='flex justify-between -mt-0.5'>
                         <div className='flex flex-col'>
                             <h1 className='text-[13.7px]'>Graphic Design</h1>
@@ -106,8 +106,8 @@ export default function CatalogSection() {
                 <div
                     onClick={handleTap}
                     className={`catalog-card relative flex flex-col border-2 px-4 py-1 border-white rounded-2xl ${isTapped ? 'active' : ''}`}>
-                    <Image src='/images/homeAssets/photographyCatalog.png' width={1024}
-                    height={1024} className='w-full' alt='photography' />
+                    <Image src='/images/homeAssets/photographyCatalog.png' width={400}
+                    height={400} className='min-w-[5rem] p-1 sm:p-2 md:p-3 lg:p-4 xl:p-5 ' alt='photography' />
                     <div className='flex justify-between -mt-0.5'>
                         <div className='flex flex-col'>
                             <h1 className='text-[13.7px]'>Video Editing</h1>

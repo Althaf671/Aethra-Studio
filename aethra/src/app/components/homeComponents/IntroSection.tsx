@@ -57,7 +57,7 @@ export default function IntroSection() {
   const [currentVideo, setCurrentVideo] = useState<string>('');
 
   return (
-    <div className="container p-4 pt-10 md:p-6 lg:p-10">
+    <div className="container p-4 pt-10 px-5">
       {/* Title */}
       <motion.div
         ref={ref}
@@ -80,16 +80,38 @@ export default function IntroSection() {
         speed={1500}
         autoplay={{ delay: 5000 }}
         pagination={{ clickable: true, el: '.custom-pagination' }}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1280: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1536: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+        }}
       >
         {profileTeam.map((m) => (
-          <SwiperSlide key={m.id} className="max-w-[800px]">
+          <SwiperSlide key={m.id} className="w-full">
             <div className="flex h-[200px] w-full rounded-2xl border-2 border-white">
               {/* Gambar + tombol */}
               <div className="relative h-full w-[67%]">
                 <Image
                   src={m.link}
                   alt="intro"
-                  fill
+                  layout="fill" // Menggunakan layout="fill" untuk membuat gambar responsif
                   className="rounded-tl-2xl rounded-bl-2xl object-cover"
                 />
                 <button
