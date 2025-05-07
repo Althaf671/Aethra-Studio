@@ -29,7 +29,7 @@ body {
   color: white;
 }
 
-h1, h2, h3, .poppins {
+h1, h2, h3, .poppins, .poppins-text {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
@@ -123,6 +123,11 @@ a.active .hr-bg {
 
 .btn-edit:active, .btn-edit:hover {
   background: #ffffff;
+}
+
+.button-delete {
+  background: rgb(232, 17, 17);
+  width: 100px;
 }
 
 
