@@ -18,6 +18,8 @@ interface Service {
 export default function CrudService() {
   const [open, setOpen] = useState(false);
   const [services, setServices] = useState<Service[]>([]);
+  const [deleteMode, setDeleteMode] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -38,12 +40,36 @@ export default function CrudService() {
     }
   };
 
-  return (
-    <div className="relative container p-4 max-w-xl mx-auto ">
+  const toggleSelected = (id: number) => {
+    setSelectedIds((prev) =>
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+    );
+  };
 
+  const handleBulkDelete = async () => {
+    await Promise.all(selectedIds.map((id) => handleDelete(id)));
+    setDeleteMode(false);
+    setSelectedIds([]);
+  };
+
+  const handleDeleteClick = () => {
+    if (deleteMode && selectedIds.length > 0) {
+      handleBulkDelete();
+    } else {
+      setDeleteMode((prev) => !prev);
+      setSelectedIds([]);
+    }
+  };
+
+  return (
+    <div className="relative container p-4 max-w-xl mx-auto">
       <AdminSidebar open={open} onClose={() => setOpen(false)} />
 
-      <div className={`flex justify-between items-center border-b-2 pb-3 ${open ? "opacity-50" : "opacity-100"} transition-opacity duration-300 ease-in-out`}>
+      <div
+        className={`flex justify-between items-center border-b-2 pb-3 ${
+          open ? 'opacity-50' : 'opacity-100'
+        } transition-opacity duration-300 ease-in-out`}
+      >
         <div className="flex gap-1 items-center">
           <Image
             src="/images/misc/whiteMenu.png"
@@ -67,9 +93,10 @@ export default function CrudService() {
           />
           <Image
             src="/images/adminAssets/delete-button.svg"
-            alt="Delete Service"
+            alt={deleteMode ? 'Confirm Delete' : 'Delete Service'}
             width={24}
             height={24}
+            onClick={handleDeleteClick}
             className="cursor-pointer"
           />
         </div>
@@ -77,36 +104,53 @@ export default function CrudService() {
 
       <div className="mt-3">
         {services.length > 0 ? (
-          services.map((service) => (
-            <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
-              <div key={service.id} className="w-fit flex flex-col border p-3 rounded-xl mb-2 text-xs justify-between">
-              <h1>{service.title}</h1>
-              {service.image && (
-              <div className="mt-2">
-                <Image
-                  src={service.image}
-                  alt="Preview"
-                  width={300}
-                  height={300}
-                  className="rounded-[7px] object-cover"
-                />
-              </div>
-              )}
-              <div className='flex w-full justify-between mt-1'>
-                <p className='price-color text-[14px]'>Rp{service.price}</p>
-              </div>
-              <p className='text-[14px]'>{service.description}</p>
-
-              <button
-              type='button'
-                onClick={() => handleDelete(service.id)}
-                className="text-white bg-red hover:opacity-80 underline cursor-pointer px-4 py-2 rounded-xl"
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {services.map((service) => (
+              <div
+                key={service.id}
+                className="border p-3 w-[200px] rounded-xl text-xs flex flex-col justify-between relative"
               >
-                Delete
-              </button>
-            </div>
-            </div>
-          ))
+                {deleteMode && (
+                  <label>
+                  <input
+                    type="checkbox"
+                    className="absolute top-2 left-2 w-4 h-4"
+                    checked={selectedIds.includes(service.id)}
+                    onChange={() => toggleSelected(service.id)}
+                  />
+                  *
+                  </label>
+                )}
+
+                <h1 className="text-lg font-semibold">{service.title}</h1>
+
+                {service.image && (
+                  <div className="mt-2">
+                    <Image
+                      src={service.image}
+                      alt="Preview"
+                      width={200}
+                      height={200}
+                      className="rounded-[7px] object-cover"
+                    />
+                  </div>
+                )}
+
+                <div className="flex w-full justify-between mt-1">
+                  <p className="price-color text-[14px]">Rp{service.price}</p>
+                </div>
+                <p className="text-[14px]">{service.description}</p>
+
+                <button
+                  type="button"
+                  onClick={() => router.push(`/admin/formedit/${service.id}`)}
+                  className="text-white bg-blue-600 hover:opacity-80 underline cursor-pointer px-4 py-2 rounded-xl mt-2"
+                >
+                  Edit
+                </button>
+              </div>
+            ))}
+          </div>
         ) : (
           <p className="text-gray-500 mt-4">No services found.</p>
         )}
@@ -114,3 +158,4 @@ export default function CrudService() {
     </div>
   );
 }
+

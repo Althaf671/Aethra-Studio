@@ -3,15 +3,17 @@
 import React, { useEffect, useState } from 'react';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { toast } from 'react-hot-toast';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const TopSection = () => {
   const { data: session } = useSession();
   const [isEditing, setIsEditing] = useState(false);
   const [phone, setPhone] = useState<string | undefined>(undefined);
+  const router = useRouter();
 
   useEffect(() => {
     const storedPhone = localStorage.getItem('phone');
@@ -36,13 +38,9 @@ const TopSection = () => {
       const data = await response.json();
       if (response.ok) {
         toast.success('Profile updated successfully');
-        console.log('Profile updated successfully', data);
-
-        // Simpan ke localStorage
         if (phone) {
           localStorage.setItem('phone', phone);
         }
-
         setIsEditing(false);
       } else {
         toast.error('Update failed. Check your input again');
@@ -63,75 +61,83 @@ const TopSection = () => {
 
   return (
     <>
-    <div className='flex justify-baseline gap-2 mb-2.5'>
-        <Link href="/">
-           <Image src="/images/misc/arrowBack.png" width={35} height={35} alt='home button'/>
-        </Link>
-      <h1 className='text-2xl'>{session?.user.name}'s dashboard</h1>
-    </div>
-    <div className="relative flex min-h-[7rem] justify-between items-baseline border-[1.2px] py-3 px-4 pb-8 rounded-2xl">
-      {/* Left Profile Section */}
-      <div className="flex flex-col text-left">
-        <div className="mt-2 flex flex-col gap-1">
-          <p className="text-[15px]">Username: {session?.user.name}</p>
-          <p className="text-[15px]">User ID: <span className='opacity-60'>{session?.user.id}</span></p>
-          <p className="text-[15px]">
-            E-mail:
-            <span className="underline ml-1 text-amber-400">{session?.user.email}</span>;
-          </p>
+      <div className='flex justify-between items-center mb-2.5'>
+        <div className='flex gap-2 items-center'>
+          <Link href="/">
+            <Image src="/images/misc/arrowBack.png" width={35} height={35} alt='home button' />
+          </Link>
+          <h1 className='text-xl'>{session?.user.name}'s dashboard</h1>
+        </div>
 
-          {/* Phone Section */}
-          <div className="flex items-center gap-1.5">
-            <p className="text-[15px]">Phone:</p>
-            {!isEditing ? (
-              <span className="underline text-white text-[15px]">
-                {phone || 'Enter phone'};
-              </span>
-            ) : (
-              <PhoneInput
-                international
-                defaultCountry="ID"
-                placeholder="+62 812-3456-7890"
-                value={phone || undefined}
-                onChange={(value) => setPhone(value ?? undefined)}
-                className="max-w-[140px] underline text-[12px]"
-              />
-            )}
+        <button
+          onClick={() => signOut({ callbackUrl: '/' })}
+          className="px-3 py-1 bg-white text-black rounded-xl hover:opacity-70 text-sm cursor-pointer"
+        >
+          Logout
+        </button>
+      </div>
+
+      <div className="relative flex min-h-[7rem] justify-between items-baseline border-[1.2px] py-3 px-4 pb-8 rounded-2xl">
+        {/* Left Profile Section */}
+        <div className="flex flex-col text-left">
+          <div className="mt-2 flex flex-col gap-1">
+            <p className="text-[15px]">Username: {session?.user.name}</p>
+            <p className="text-[15px]">User ID: <span className='opacity-60'>{session?.user.id}</span></p>
+            <p className="text-[15px]">
+              E-mail:
+              <span className="underline ml-1 text-amber-400">{session?.user.email}</span>;
+            </p>
+
+            {/* Phone Section */}
+            <div className="flex items-center gap-1.5">
+              <p className="text-[15px]">Phone:</p>
+              {!isEditing ? (
+                <span className="underline text-white text-[15px]">
+                  {phone || 'Enter phone'};
+                </span>
+              ) : (
+                <PhoneInput
+                  international
+                  defaultCountry="ID"
+                  placeholder="+62 812-3456-7890"
+                  value={phone || undefined}
+                  onChange={(value) => setPhone(value ?? undefined)}
+                  className="max-w-[140px] underline text-[12px]"
+                />
+              )}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Edit / Save / Cancel Button */}
-      <div className="absolute top-3.5 right-3">
-        {!isEditing ? (
-           <Image
-           src="/images/misc/editBTN.png"
-           width={30}
-           height={30}
-           alt="Edit Profile"
-           onClick={() => setIsEditing(true)}
-           className="cursor-pointer"
-         />
-        ) : (
-          <>
+        {/* Edit / Save / Cancel Button */}
+        <div className="absolute top-3.5 right-3">
+          {!isEditing ? (
+            <Image
+              src="/images/misc/editBTN.png"
+              width={30}
+              height={30}
+              alt="Edit Profile"
+              onClick={() => setIsEditing(true)}
+              className="cursor-pointer"
+            />
+          ) : (
             <div className='flex gap-1.5'>
-                <button
-                    onClick={handleSave}
-                    className="btn-edit cursor-pointer px-2 py-0.5 font-bold"
-                >
+              <button
+                onClick={handleSave}
+                className="btn-edit cursor-pointer px-2 py-0.5 font-bold"
+              >
                 Save
-                </button>
-                <button
-                    onClick={handleCancel}
-                    className="btn-edit cursor-pointe px-2 py-0.5 font-bold"
-                >
+              </button>
+              <button
+                onClick={handleCancel}
+                className="btn-edit cursor-pointer px-2 py-0.5 font-bold"
+              >
                 Close
-                </button>
+              </button>
             </div>
-          </>
-        )}
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 };
