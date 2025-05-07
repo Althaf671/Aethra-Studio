@@ -1,11 +1,11 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 
-// Handle PUT (update)
-export async function PUT(request: NextRequest, context: { params: { id: string } }) {
-  const { id } = context.params;
-  const body = await request.json();
+export async function PUT(request: NextRequest) {
+  const url = new URL(request.url);
+  const id = url.pathname.split('/').pop(); // ambil id dari URL
 
+  const body = await request.json();
   const { title, description, price, image, available, deadline } = body;
 
   try {
@@ -24,16 +24,13 @@ export async function PUT(request: NextRequest, context: { params: { id: string 
     return NextResponse.json(updateService);
   } catch (error) {
     console.error('Update error:', error);
-    return NextResponse.json(
-      { error: 'Failed to update service' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to update service' }, { status: 500 });
   }
 }
 
-// Handle DELETE
-export async function DELETE(request: NextRequest, context: { params: { id: string } }) {
-  const { id } = context.params;
+export async function DELETE(request: NextRequest) {
+  const url = new URL(request.url);
+  const id = url.pathname.split('/').pop();
 
   try {
     await db.service.delete({
@@ -43,9 +40,6 @@ export async function DELETE(request: NextRequest, context: { params: { id: stri
     return NextResponse.json({ message: 'Deleted successfully' });
   } catch (error) {
     console.error('Delete error:', error);
-    return NextResponse.json(
-      { error: 'Delete failed' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Delete failed' }, { status: 500 });
   }
 }
