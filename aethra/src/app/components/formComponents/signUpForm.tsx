@@ -82,7 +82,7 @@ export default function SignUpForm() {
             {...register('email')}
             type="email"
             placeholder="Email@example.com"
-            className="outline-none my-[8px] max-w-[300px] tracking-wider rounded-2xl bg-white/10 py-2 px-4 text-[15px]"
+            className="outline-none my-[8px] max-w-[300px] justify- tracking-wider rounded-2xl bg-white/10 py-2 px-4 text-[15px]"
           />
           {errors.email && <p className="text-red-400 text-[10px] text-left ml-2 -my-1">{errors.email.message}</p>}
 

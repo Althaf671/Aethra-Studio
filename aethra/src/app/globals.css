@@ -37,6 +37,13 @@ h1, h2, h3, .poppins, .poppins-text {
 
 
 /* Background */
+.bg-card {
+  background: #eeba2b;
+}
+
+.bg-card-delete {
+  background: rgb(253, 2, 2);
+}
 
 
 
@@ -54,6 +61,10 @@ h1, h2, h3, .poppins, .poppins-text {
 /* Font Color */
 .price-color, .register-login-text, .special-text {
   color: #eeba2b;
+}
+
+.text-button {
+  color: blue;
 }
 
 .gradient-text {

@@ -1,19 +1,29 @@
 // pages/services.tsx
 'use client';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import Image from 'next/image';
+
+
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+  available: boolean;
+  deadline: string;
+}
 
 export default function Services() {
-  const [services, setServices] = useState([]);
+  const [services, setServices] = useState<Service[]>([]);
 
   useEffect(() => {
-    async function fetchServices() {
-      const response = await fetch('/api/services');
-      const data = await response.json();
+    async function fetchData() {
+      const res = await fetch('/api/admin/crud-service/read');
+      const data = await res.json();
       setServices(data);
     }
-
-    fetchServices();
+    fetchData();
   }, []);
 
   const handleAddToCart = async (serviceId: number) => {
@@ -29,27 +39,40 @@ export default function Services() {
   };
 
   return (
-    <div className='mt-20'>
-      <h1>All Services</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {services.map((service: any) => (
-          <div key={service.id} className="bg-white p-4 rounded shadow">
-            <img src={service.image} alt={service.title} className="w-full h-48 object-cover rounded" />
-            <h3 className="mt-2 font-bold">{service.title}</h3>
-            <p>{service.description}</p>
-            <p className="text-xl font-semibold">${service.price}</p>
-            <button
-              onClick={() => handleAddToCart(service.id)}
-              className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
-            >
-              Add to Cart
-            </button>
-            <Link href={`/service/${service.id}`}>
-              <a className="block mt-2 text-blue-500">View Details</a>
-            </Link>
-          </div>
-        ))}
-      </div>
+    <div className='mt-20 mx-5 pb-26'>
+      {services.length > 0 ? (
+             <div className="flex min-w-1/3 justify-between gap-4">
+               {services.map((service) => (
+                 <div
+                   key={service.id}
+                   className="border p-3 w-[200px] rounded-xl text-xs flex flex-col justify-between relative"
+                 >
+
+   
+                   <h1 className="text-lg font-semibold">{service.title}</h1>
+   
+                   {service.image && (
+                     <div className="mt-2">
+                       <Image
+                         src={service.image}
+                         alt="Preview"
+                         width={200}
+                         height={200}
+                         className="rounded-[7px] object-cover"
+                       />
+                     </div>
+                   )}
+   
+                   <div className="flex w-full justify-between mt-1">
+                     <p className="price-color text-[14px]">Rp{service.price}</p>
+                   </div>
+                   <p className="text-[14px]">{service.description}</p>
+                 </div>
+               ))}
+             </div>
+           ) : (
+             <p className="text-gray-500 mt-4">No services found.</p>
+           )}
     </div>
   );
 }

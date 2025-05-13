@@ -16,7 +16,7 @@ export default function AdminSidebar({ open, onClose }: AdminSidebarProps) {
     >
       {/* Sidebar Content */}
       <div className="p-4">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between border-b-2 border-white items-center mb-4">
           <p className="font-bold tracking-wide text-xl">Admin Menu</p>
           {/* Close Button */}
           <button
@@ -29,9 +29,6 @@ export default function AdminSidebar({ open, onClose }: AdminSidebarProps) {
         <ul className="flex flex-col gap-2 text-[16px]">
           <Link href='/admin' className="hover:underline cursor-pointer">Dashboard</Link>
           <Link href='/admin/create' className="hover:underline cursor-pointer">Services</Link>
-          <li className="hover:underline cursor-pointer">Testimonials</li>
-          <li className="hover:underline cursor-pointer">Swiper</li>
-          <li className="hover:underline cursor-pointer">Company</li>
         </ul>
       </div>
     </div>
