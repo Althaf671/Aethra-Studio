@@ -1,17 +1,19 @@
+// middleware.ts
 import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
-import { withAuth } from "next-auth/middleware";
 
 export async function middleware(req: NextRequest) {
-    const token = await getToken({ req });
+  const token = await getToken({ req });
 
-    if (req.nextUrl.pathname.startsWith('/admin') && token?.role !== 'admin') {
-        return NextResponse.redirect(new URL('/unauthorized', req.url));
-    }
+  const isAdminRoute = req.nextUrl.pathname.startsWith('/admin');
 
-    return NextResponse.next();
+  if (isAdminRoute && token?.role !== 'isAdmin') {
+    return NextResponse.redirect(new URL('/login', req.url)); 
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*'],
 };

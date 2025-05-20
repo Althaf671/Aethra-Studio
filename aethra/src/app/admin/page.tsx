@@ -26,7 +26,8 @@ export default function Admin() {
             {/* Main Content */}
             <div className={`flex-1 p-6 transition-opacity duration-300 ${open ? "opacity-50" : "opacity-100"}`}>
                 {/* Header */}
-                <div className="flex items-center gap-1 mb-6 border-b-2 pb-3">
+                <div className="flex justify-between">
+                    <div className="flex w-full items-center gap-1 mb-6 border-b-2 pb-3">
                     <Image
                         src="/images/misc/whiteMenu.png"
                         alt="menu"
@@ -36,6 +37,8 @@ export default function Admin() {
                         onClick={() => setOpen(!open)}
                     />
                     <h1 className="text-xl">Dashboard</h1>
+                </div>
+                <div className="flex"></div>
                 </div>
 
                 {/* Cards */}

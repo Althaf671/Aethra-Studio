@@ -138,7 +138,6 @@ export default function CrudService() {
       <div className='border-2 border-white flex justify-between px-10 py-2 rounded-lg text-xl text-gray-300 font-semibold mt-4'>
         <p>Name</p>
         <p>Price</p>
-        <p>Edit</p>
       </div>
 
       {/* Service Grid */}
@@ -165,12 +164,6 @@ export default function CrudService() {
                 <p className="font-bold text-base mt-2">{service.title}</p>
                 <p className="text-[16px] mt-1 font-semibold">Rp{service.price}</p>
                  <div className='flex flex-col'>
-                  <p
-                  onClick={() => router.push(`/admin/formedit/${service.id}`)}
-                  className="underline text-[16px] text-center cursor-pointer rounded-xl "
-                  >
-                  Edit
-                  </p>
                 </div>
 
               </div>

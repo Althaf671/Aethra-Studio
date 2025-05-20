@@ -36,8 +36,6 @@ export default function NavbarLayout() {
     status === "authenticated"
       ? { label: 'Profile', href: '/profile' }
       : { label: 'Login', href: '/login' },
-    { label: 'Saved', href: '/service' },
-    { label: '🇬🇧 | 🇮🇩', href: '/' },
   ];
 
   return (

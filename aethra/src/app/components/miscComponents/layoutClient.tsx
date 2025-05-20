@@ -6,7 +6,7 @@ import NavbarLayout from "./NavbarLayout";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from 'react-hot-toast';
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Children, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 
@@ -46,11 +46,11 @@ function LayoutInner({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {isVisible && <NavbarLayout />}
-      <Toaster position="top-center" reverseOrder={false} />
-      {loading && <Loading />}
-      {children}
-      <FooterLayout />
+          {isVisible && <NavbarLayout />}
+          <Toaster position="top-center" reverseOrder={false} />
+          {loading && <Loading />}
+            {children}
+          <FooterLayout />
     </>
   );
 }

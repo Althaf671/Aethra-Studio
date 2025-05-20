@@ -45,7 +45,6 @@ datasource db {
     createdAt   DateTime      @default(now())
     updatedAt   DateTime      @updatedAt
   
-    // Relasi
     orders      Order[]
     carts       Cart[]
     testimonials ServiceTestimonial[]
@@ -68,7 +67,7 @@ datasource db {
     service     Service   @relation(fields: [serviceId], references: [id])
     serviceId   Int
     total       Float
-    status      String    @default("pending") // pending, success, failed, etc.
+    status      String    @default("pending") 
     paidAt      DateTime?
     createdAt   DateTime  @default(now())
   }
@@ -78,7 +77,7 @@ datasource db {
     user        User      @relation(fields: [userId], references: [id])
     userId      Int
     message     String
-    rating      Int       // Optional: 1-5
+    rating      Int      
     createdAt   DateTime  @default(now())
   
     serviceTestimonial ServiceTestimonial[]
@@ -97,8 +96,8 @@ datasource db {
     id          Int       @id @default(autoincrement())
     title       String
     image       String
-    linkTo      String    // misalnya link ke produk tertentu
-    type        String    // "home", "testimonial", dll.
+    linkTo      String    
+    type        String    
     createdAt   DateTime  @default(now())
   }
   
