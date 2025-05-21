@@ -6,7 +6,7 @@ import IntroSection from "./components/homeComponents/IntroSection";
 
 export default function Home() {
   return (
-    <div className="container mx-auto flex flex-col flex-wrap gap-2 -z-50 overflow-x-hidden text-white">
+    <div className="container mx-auto flex flex-col flex-wrap gap-3 -z-50 overflow-x-hidden text-white">
       <Hero />
       <Testimonial />
       <CatalogSection />
